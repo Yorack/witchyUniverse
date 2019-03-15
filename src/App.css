@@ -1,33 +1,78 @@
-.App {
-  text-align: center;
+.app-container {
+  height: 100%;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.witchyUniverse {
+  height: 100%;
+  background-image: url("assets/img/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* MENU */
+.menu {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 60px;
+  margin-right: 50px;
+  text-transform: lowercase;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.menu a img {
+  width: 150px;
+  height: 150px;
+}
+
+.menu a:visited, .top-menu a:visited {
+  color: #ffffff;
+}
+
+.top-menu {
+  background-color: #354e80;
+  padding: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.top-menu a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 30px;
+  margin-right: 25px;
+  text-transform: lowercase;
+  display: flex;
+  align-items: center;
+}
+
+.top-menu a img {
+  width: 50px;
+  height: 50px;
+}
+
+/* LANDING */
+.landing {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #110A2B38;
+}
+
+.landing .title{
+  font-size: 11em;
+  color: #ffffff;
+  display: flex;
+  text-align: center;
+  flex-grow: 1;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
