@@ -1,0 +1,40 @@
+.avatar-maker-container {
+    display: flex;
+}
+
+.avatar-maker-container > div{
+    display: flex;
+    flex-direction: column;
+
+    border: solid 1px firebrick;
+    flex-basis: 50%;
+}
+
+.color-selected {
+    border: solid 2px white;
+    padding: 3px;
+    border-radius: 50%;
+}
+
+.color-not-selected {
+    padding: 5px;
+}
+
+.color-icon {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: white solid 2px;
+}
+
+.selection-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.selection-icon > span {
+    font-size: 32px;
+}
