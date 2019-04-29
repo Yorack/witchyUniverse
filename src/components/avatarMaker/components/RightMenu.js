@@ -7,9 +7,9 @@ export default class RightMenu extends Component {
     render() {
         return <div className='right-menu-container'>
             {
-                _.map(Constants.AVATAR_MAKER_CHOOSER, chooser => {
+                _.map(Constants.AVATAR_MAKER_CHOOSER, (chooser, index) => {
                     return (
-                        <ExpantionPanelCustom panelContent={chooser} />
+                        <ExpantionPanelCustom key={`expantionPanel_${index}`} panelContent={chooser} />
                     )
                 })
             }

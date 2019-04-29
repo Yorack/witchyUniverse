@@ -27,11 +27,10 @@ const styles = theme => ({
 
 export class ExpantionPanelCustom extends Component {
     static propTypes = {
-        title: PropTypes.string.isRequired,
         panelContent: PropTypes.object,
     };
 
-    renderPanelContent = (content) => {
+    renderPanelContent = (content, group) => {
         if (!content) {
             return <div>empty :)</div>
         }
@@ -45,7 +44,7 @@ export class ExpantionPanelCustom extends Component {
                     contentArray.push(<div key={key}><h1>there should be a shape chooser tbd</h1></div>);
                     break;
                 case Constants.CHOOSER_TYPE.COLOR:
-                    contentArray.push(<ColorChooser colors={content.colors}/>);
+                    contentArray.push(<ColorChooser key={key} colors={content.colors} group={group}/>);
                     break;
             }
         })
@@ -54,16 +53,16 @@ export class ExpantionPanelCustom extends Component {
     }
 
     render() {
-        const {classes, panelContent} = this.props;
+        const {classes, panelContent, key} = this.props;
 
         return (
-            <div className={classes.root}>
+            <div key={key} className={classes.root}>
                 <ExpansionPanel>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                         <Typography>{panelContent.title}</Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className={classes.panelContainer}>
-                        {this.renderPanelContent(panelContent.content)}
+                        {this.renderPanelContent(panelContent.content, panelContent.group)}
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
             </div>
