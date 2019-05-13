@@ -4,6 +4,17 @@ export const actions = {
             type: 'SELECT_COLOR',
             color: color,
             group: group,
-        }
-    }
-}
+        };
+    },
+    resetAvatar: () => {
+        return {
+            type: 'RESET_AVATAR',
+            payload: 'NULL'
+        };
+    },
+    randomAvatar: () => {
+        return {
+            type: 'RANDOM_AVATAR',
+        };
+    },
+};

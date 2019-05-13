@@ -9,11 +9,11 @@ export default class Constants {
     static DEFAULT_COLOR = [
         new Color('#75d6c1', 0),
         new Color('#b32b84', 1),
-        new Color('#774f8f', 0),
-        new Color('#ffce76', 1),
-        new Color('#8e8ed9', 0),
-        new Color('#9e9e9e', 1),
-        new Color('#794b3b', 0),
+        new Color('#774f8f', 2),
+        new Color('#ffce76', 3),
+        new Color('#8e8ed9', 4),
+        new Color('#9e9e9e', 5),
+        new Color('#794b3b', 6),
     ]
 
 

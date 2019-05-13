@@ -9,6 +9,7 @@ import * as _ from "lodash";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Constants from "../../Common/Constants";
 import ColorChooser from "./ColorChooser";
+import Avatar from '@material-ui/core/Avatar';
 
 const styles = theme => ({
     root: {
@@ -23,6 +24,22 @@ const styles = theme => ({
         fontSize: theme.typography.pxToRem(15),
         fontWeight: theme.typography.fontWeightRegular,
     },
+    expansionPanelSummary: {
+        backgroundColor: '#5b5f84',
+    },
+    expansionPanelContent: {
+        display: 'flex',
+        alignItems: 'baseline',
+    },
+    expansionPanelSummaryTitle: {
+        color: '#ffffff'
+    },
+    expandIcon: {
+        color: '#ffffff'
+    },
+    avatar: {
+        marginRight: 15,
+    }
 });
 
 export class ExpantionPanelCustom extends Component {
@@ -58,8 +75,15 @@ export class ExpantionPanelCustom extends Component {
         return (
             <div key={key} className={classes.root}>
                 <ExpansionPanel>
-                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography>{panelContent.title}</Typography>
+                    <ExpansionPanelSummary className={classes.expansionPanelSummary} expandIcon={<ExpandMoreIcon className={classes.expandIcon} />}>
+                        <div className={classes.expansionPanelContent}>
+                            <Avatar aria-label={panelContent.title} className={classes.avatar}>
+                                {panelContent.title[0]}
+                            </Avatar>
+                            <Typography className={classes.expansionPanelSummaryTitle} variant="h5">
+                                {panelContent.title}
+                            </Typography>
+                        </div>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className={classes.panelContainer}>
                         {this.renderPanelContent(panelContent.content, panelContent.group)}

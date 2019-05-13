@@ -1,14 +1,7 @@
-import React, {Component, useEffect, useState} from 'react';
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import Typography from "@material-ui/core/Typography";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import PropTypes from 'prop-types';
-import {withStyles} from "@material-ui/core";
-import * as _ from "lodash";
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Constants from "../../Common/Constants";
-import Icon from "@material-ui/core/Icon";
+import React, {useEffect, useState} from 'react';
+import {withStyles} from '@material-ui/core';
+import * as _ from 'lodash';
+import Icon from '@material-ui/core/Icon';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {actions} from '../redux/actions';
@@ -25,7 +18,7 @@ const style = () => ({
     }
 });
 
-const selectPreviousColor = (colors, selectedColor, actions) => {
+const selectPreviousColor = (colors, selectedColor) => {
     const index = _.indexOf(colors, selectedColor);
     if (index <= 0) {
         return colors[colors.length - 1];
@@ -34,7 +27,7 @@ const selectPreviousColor = (colors, selectedColor, actions) => {
     return colors[index - 1];
 };
 
-const selectNextColor = (colors, selectedColor, actions) => {
+const selectNextColor = (colors, selectedColor) => {
     const index = _.indexOf(colors, selectedColor);
     if (index === colors.length - 1) {
         return colors[0];
@@ -44,18 +37,26 @@ const selectNextColor = (colors, selectedColor, actions) => {
 };
 
 const ColorChooser = (props) => {
-    const {colors, classes, actions, key, group} = props;
+    const {colors, classes, actions, key, group, stockedColorIndex} = props;
+
+    console.log(group + ': ' + stockedColorIndex);
 
     // TODO a récupérer dans le local storage ou le store plutot que 1er valeur
-    const [selectedColor, setSelectedColor] = useState(colors[0]);
+    const [selectedColor, setSelectedColor] = useState(colors[stockedColorIndex]);
+    console.log(selectedColor);
+    console.log(colors[stockedColorIndex]);
+
     useEffect(() => {
-        // Update the document title using the browser API
         actions.selectColor(_.indexOf(colors, selectedColor), group);
     }, [selectedColor]);
 
+    // useEffect(() => {
+    //     actions.selectColor(_.indexOf(colors, stockedColorIndex), group);
+    // }, [stockedColorIndex]);
+
     return (
         <div key={key} className={classes.root}>
-            <div className={'selection-icon'} onClick={() => {setSelectedColor(selectPreviousColor(colors, selectedColor, actions))}}>
+            <div className={'selection-icon'} onClick={() => {setSelectedColor(selectPreviousColor(colors, selectedColor))}}>
                 <Icon>keyboard_arrow_left</Icon>
             </div>
             <div className={'color-container'}></div>
@@ -70,7 +71,7 @@ const ColorChooser = (props) => {
                 })
             }
             </div>
-            <div className={'selection-icon'} onClick={() => {setSelectedColor(selectNextColor(colors, selectedColor, actions))}}>
+            <div className={'selection-icon'} onClick={() => {setSelectedColor(selectNextColor(colors, selectedColor))}}>
                 <Icon>keyboard_arrow_right</Icon>
             </div>
         </div>
@@ -79,11 +80,11 @@ const ColorChooser = (props) => {
 
 
 const mapStateToProps = (state, ownProps) => {
+    // todo faut rendre paramétrable avec le ownProps.group
     return {
-        hairColor: state.color.hair,
+        stockedColorIndex: state.color[ownProps.group],
     };
 }
-
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actions, dispatch),

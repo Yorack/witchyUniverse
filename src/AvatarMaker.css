@@ -33,6 +33,7 @@
     justify-content: center;
     align-items: center;
     color: white;
+    cursor: pointer;
 }
 
 .selection-icon > span {
@@ -40,6 +41,7 @@
 }
 
 .avatar {
+    height: 400px;
     display: flex;
     flex-direction: column;
     max-width: 100%;
@@ -47,8 +49,19 @@
     justify-content: center;
 }
 
-.avatar img {
+.avatar .body-image {
     width: auto;
     height: 400px;
-    position: relative;
+    position: absolute;
+}
+
+.right-menu-container {
+    background-color: #b8bbcb;
+}
+
+.management-zone {
+    padding: 12px 24px;
+}
+.management-zone button {
+    margin-right: 12px;
 }
