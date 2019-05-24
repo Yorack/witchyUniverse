@@ -15,6 +15,8 @@ export const ShapeReducer = (state = initialState, action) => {
         case 'RANDOM_AVATAR':
             newState = initialState;
             break;
+        default:
+            return newState;
     }
 
 

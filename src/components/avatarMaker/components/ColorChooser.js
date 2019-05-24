@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {withStyles} from '@material-ui/core';
 import * as _ from 'lodash';
 import Icon from '@material-ui/core/Icon';
@@ -15,7 +15,7 @@ const style = () => ({
         padding: '0 25px',
         flexGrow: 1,
         justifyContent: 'space-evenly',
-    }
+    },
 });
 
 const selectPreviousColor = (colors, selectedColor) => {
@@ -37,54 +37,47 @@ const selectNextColor = (colors, selectedColor) => {
 };
 
 const ColorChooser = (props) => {
-    const {colors, classes, actions, key, group, stockedColorIndex} = props;
+    const {colors, classes, actions, key, group, selectedColor} = props;
 
-    console.log(group + ': ' + stockedColorIndex);
-
-    // TODO a récupérer dans le local storage ou le store plutot que 1er valeur
-    const [selectedColor, setSelectedColor] = useState(colors[stockedColorIndex]);
-    console.log(selectedColor);
-    console.log(colors[stockedColorIndex]);
-
-    useEffect(() => {
+    const selectColor = (selectedColor) => {
         actions.selectColor(_.indexOf(colors, selectedColor), group);
-    }, [selectedColor]);
-
-    // useEffect(() => {
-    //     actions.selectColor(_.indexOf(colors, stockedColorIndex), group);
-    // }, [stockedColorIndex]);
+    };
 
     return (
         <div key={key} className={classes.root}>
-            <div className={'selection-icon'} onClick={() => {setSelectedColor(selectPreviousColor(colors, selectedColor))}}>
+            <div className={'selection-icon'} onClick={() => {
+                selectColor(selectPreviousColor(colors, selectedColor));
+            }}>
                 <Icon>keyboard_arrow_left</Icon>
             </div>
             <div className={'color-container'}></div>
             <div className={classes.colorContainer}>
-            {
-                _.map(colors, (color, index) => {
-                    return (
-                        <div key={'color' + index} className={color === selectedColor ? `color-selected ` : `color-not-selected`} >
-                            <div className={`color-icon`} style={{backgroundColor: color.colorHex}} onClick={() => setSelectedColor(colors[index])}></div>
-                        </div>
-                    )
-                })
-            }
+                {
+                    _.map(colors, (color, index) => {
+                        return (
+                            <div key={'color' + index} className={color === selectedColor ? `color-selected ` : `color-not-selected`}>
+                                <div className={`color-icon`} style={{backgroundColor: color.colorHex}}
+                                     onClick={() => selectColor(colors[index])}></div>
+                            </div>
+                        );
+                    })
+                }
             </div>
-            <div className={'selection-icon'} onClick={() => {setSelectedColor(selectNextColor(colors, selectedColor))}}>
+            <div className={'selection-icon'} onClick={() => {
+                selectColor(selectNextColor(colors, selectedColor));
+            }}>
                 <Icon>keyboard_arrow_right</Icon>
             </div>
         </div>
-    )
+    );
 };
-
 
 const mapStateToProps = (state, ownProps) => {
     // todo faut rendre paramétrable avec le ownProps.group
     return {
-        stockedColorIndex: state.color[ownProps.group],
+        selectedColor: state.color[ownProps.group],
     };
-}
+};
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actions, dispatch),

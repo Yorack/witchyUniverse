@@ -10,6 +10,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Constants from "../../Common/Constants";
 import ColorChooser from "./ColorChooser";
 import Avatar from '@material-ui/core/Avatar';
+import ShapeChooser from './ShapeChooser.js';
 
 const styles = theme => ({
     root: {
@@ -59,6 +60,7 @@ export class ExpantionPanelCustom extends Component {
             switch (content.type) {
                 case Constants.CHOOSER_TYPE.SHAPE:
                     contentArray.push(<div key={key}><h1>there should be a shape chooser tbd</h1></div>);
+                    // contentArray.push(<ShapeChooser key={key} colors={content.colors} group={group}/>);
                     break;
                 case Constants.CHOOSER_TYPE.COLOR:
                     contentArray.push(<ColorChooser key={key} colors={content.colors} group={group}/>);

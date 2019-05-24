@@ -1,8 +1,11 @@
-import Immutable from "immutable";
+import Immutable from 'immutable';
+import MathUtils from '../../../../utils/MathUtils.js';
+import _ from 'lodash';
+import Constants from '../../../Common/Constants.js';
 
 const initialState = {
-    hair: 0,
-    eye: 0,
+    hair: Constants.DEFAULT_COLOR[0],
+    eye: Constants.DEFAULT_COLOR[0],
 };
 
 export const ColorReducer = (state = initialState, action) => {
@@ -16,12 +19,15 @@ export const ColorReducer = (state = initialState, action) => {
             newState = initialState;
             break;
         case 'RANDOM_AVATAR':
-            newState = initialState;
+            _.each(newState, (colorIndex, index) => {
+                const randomIndex = MathUtils.getRandomIntInclusive(0, 6);
+                newState[index] = Constants.DEFAULT_COLOR[randomIndex];//MathUtils.getRandomIntInclusive(0, 6);
+            });
             break;
 
         default:
             return newState;
     }
 
-    return newState
-}
+    return newState;
+};

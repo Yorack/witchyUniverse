@@ -2,9 +2,9 @@ import Color from '../avatarMaker/entity/Color.js';
 
 export default class Constants {
     static CHOOSER_TYPE = {
-        COLOR: "COLOR",
-        SHAPE: "SHAPE",
-    }
+        COLOR: 'COLOR',
+        SHAPE: 'SHAPE',
+    };
 
     static DEFAULT_COLOR = [
         new Color('#75d6c1', 0),
@@ -14,22 +14,12 @@ export default class Constants {
         new Color('#8e8ed9', 4),
         new Color('#9e9e9e', 5),
         new Color('#794b3b', 6),
-    ]
+    ];
 
-
-    static HAIR_COLOR = [
-        '#75d6c1',
-        '#b32b84',
-        '#774f8f',
-        '#ffce76',
-        '#8e8ed9',
-        '#9e9e9e',
-        '#794b3b',
-    ]
     static AVATAR_MAKER_CHOOSER_GROUP = {
         HAIR: 'hair',
         EYE: 'eye',
-    }
+    };
 
     static AVATAR_MAKER_CHOOSER = [
         {
@@ -38,12 +28,13 @@ export default class Constants {
             content: [
                 {
                     type: this.CHOOSER_TYPE.SHAPE,
+                    shapes: [],
                 },
                 {
                     type: this.CHOOSER_TYPE.COLOR,
                     colors: this.DEFAULT_COLOR,
-                }
-            ]
+                },
+            ],
         },
         {
             title: 'Eyes',
@@ -51,12 +42,13 @@ export default class Constants {
             content: [
                 {
                     type: this.CHOOSER_TYPE.SHAPE,
+                    shapes: [],
                 },
                 {
                     type: this.CHOOSER_TYPE.COLOR,
                     colors: this.DEFAULT_COLOR,
-                }
-            ]
-        }
-    ]
+                },
+            ],
+        },
+    ];
 }
