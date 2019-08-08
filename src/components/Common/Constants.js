@@ -1,4 +1,5 @@
 import Color from '../avatarMaker/entity/Color.js';
+import Shape from '../avatarMaker/entity/Shape';
 
 export default class Constants {
     static CHOOSER_TYPE = {
@@ -16,10 +17,20 @@ export default class Constants {
         new Color('#794b3b', 6),
     ];
 
+    static DEFAULT_SHAPE = [
+        new Shape('should be an image :)', 1),
+        new Shape('should be an image :)', 2),
+    ];
+
     static AVATAR_MAKER_CHOOSER_GROUP = {
         HAIR: 'hair',
         EYE: 'eye',
     };
+
+    static EXPENTION_PANEL_TYPE = {
+        SECTION : 'SECTION',
+        PANEL : 'PANEL',
+    }
 
     static AVATAR_MAKER_CHOOSER = [
         {
@@ -28,7 +39,7 @@ export default class Constants {
             content: [
                 {
                     type: this.CHOOSER_TYPE.SHAPE,
-                    shapes: [],
+                    shapes: this.DEFAULT_SHAPE,
                 },
                 {
                     type: this.CHOOSER_TYPE.COLOR,
@@ -51,4 +62,16 @@ export default class Constants {
             ],
         },
     ];
+
+    static SECTION_CONTAINER = [
+        {
+            title: 'Anatomy',
+            content: this.AVATAR_MAKER_CHOOSER,
+        },
+        {
+            title: 'Cloth',
+            content: null,
+        }
+    ]
+
 }

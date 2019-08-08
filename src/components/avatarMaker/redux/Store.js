@@ -4,12 +4,21 @@ import {ShapeReducer} from './reducer/ShapeReducer.js';
 
 export default class Store {
     static initialize = () => {
-        const store = createStore(this.createReducers(), this.initialState); // no middleware for now
+        const store = createStore(this.createReducers(), this.getInitialState()); // no middleware for now
 
         return store;
     };
 
-    static initialState = {};
+    static getInitialState = () => {
+        const witchyAvatar = localStorage.getItem('witchyAvatar');
+
+        if (!witchyAvatar) {
+            localStorage.setItem('witchyAvatar', JSON.stringify({}));
+            return {};
+        }
+
+        return JSON.parse(witchyAvatar);
+    };
 
     static createReducers = () => {
         return combineReducers({

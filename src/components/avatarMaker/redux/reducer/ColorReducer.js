@@ -18,6 +18,11 @@ export const ColorReducer = (state = initialState, action) => {
         case 'RESET_AVATAR':
             newState = initialState;
             break;
+        case 'SAVE_AVATAR':
+            const witchyAvatar = JSON.parse(localStorage.getItem('witchyAvatar'));
+            witchyAvatar.color = state;
+            localStorage.setItem('witchyAvatar', JSON.stringify(witchyAvatar));
+            break;
         case 'RANDOM_AVATAR':
             _.each(newState, (colorIndex, index) => {
                 const randomIndex = MathUtils.getRandomIntInclusive(0, 6);

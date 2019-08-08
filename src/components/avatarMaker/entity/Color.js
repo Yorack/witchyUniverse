@@ -1,8 +1,7 @@
 export default class Color {
-    constructor(color, order) {
+    constructor(color, index) {
         this.colorHex = color;
-        console.log("Constructeur de couleur :)")
-        this.order = order;
+        this.index = index;
     }
 
     equals(otherColor) {

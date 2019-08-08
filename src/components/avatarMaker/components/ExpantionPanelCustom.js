@@ -8,9 +8,9 @@ import {withStyles} from "@material-ui/core";
 import * as _ from "lodash";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Constants from "../../Common/Constants";
-import ColorChooser from "./ColorChooser";
+import ColorChooser from "./Chooser/ColorChooser";
 import Avatar from '@material-ui/core/Avatar';
-import ShapeChooser from './ShapeChooser.js';
+import ShapeChooser from './Chooser/ShapeChooser.js';
 
 const styles = theme => ({
     root: {
@@ -21,12 +21,21 @@ const styles = theme => ({
         flexDirection: 'column',
         backgroundColor: '#b8bbcb',
     },
+    sectionContainerSection: {
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: 'b8bbcb',
+        padding: 0,
+    },
     heading: {
         fontSize: theme.typography.pxToRem(15),
         fontWeight: theme.typography.fontWeightRegular,
     },
     expansionPanelSummary: {
         backgroundColor: '#5b5f84',
+    },
+    sectionPanelSummary: {
+        backgroundColor: '#07062a',
     },
     expansionPanelContent: {
         display: 'flex',
@@ -44,51 +53,27 @@ const styles = theme => ({
 });
 
 export class ExpantionPanelCustom extends Component {
-    static propTypes = {
-        panelContent: PropTypes.object,
-    };
-
-    renderPanelContent = (content, group) => {
-        if (!content) {
-            return <div>empty :)</div>
-        }
-
-        const contentArray = [];
-        _.forEach(content, (content, index) => {
-            const key = `${content.type}_${index}`;
-
-            switch (content.type) {
-                case Constants.CHOOSER_TYPE.SHAPE:
-                    contentArray.push(<div key={key}><h1>there should be a shape chooser tbd</h1></div>);
-                    // contentArray.push(<ShapeChooser key={key} colors={content.colors} group={group}/>);
-                    break;
-                case Constants.CHOOSER_TYPE.COLOR:
-                    contentArray.push(<ColorChooser key={key} colors={content.colors} group={group}/>);
-                    break;
-            }
-        })
-
-        return contentArray;
-    }
-
     render() {
-        const {classes, panelContent, key} = this.props;
+        const {classes, content, title, key, type} = this.props;
+        const isTypeSection = type === Constants.EXPENTION_PANEL_TYPE.SECTION;
+        const summaryClass = isTypeSection ? classes.sectionPanelSummary : classes.expansionPanelSummary;
+        const detailClass = isTypeSection ? classes.sectionContainerSection : classes.panelContainer;
 
         return (
             <div key={key} className={classes.root}>
                 <ExpansionPanel>
-                    <ExpansionPanelSummary className={classes.expansionPanelSummary} expandIcon={<ExpandMoreIcon className={classes.expandIcon} />}>
+                    <ExpansionPanelSummary className={summaryClass} expandIcon={<ExpandMoreIcon className={classes.expandIcon} />}>
                         <div className={classes.expansionPanelContent}>
-                            <Avatar aria-label={panelContent.title} className={classes.avatar}>
-                                {panelContent.title[0]}
+                            <Avatar aria-label={title} className={classes.avatar}>
+                                {title[0]}
                             </Avatar>
                             <Typography className={classes.expansionPanelSummaryTitle} variant="h5">
-                                {panelContent.title}
+                                {title}
                             </Typography>
                         </div>
                     </ExpansionPanelSummary>
-                    <ExpansionPanelDetails className={classes.panelContainer}>
-                        {this.renderPanelContent(panelContent.content, panelContent.group)}
+                    <ExpansionPanelDetails className={detailClass}>
+                        {content}
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
             </div>

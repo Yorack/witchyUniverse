@@ -4,17 +4,19 @@ import * as _ from 'lodash';
 import Icon from '@material-ui/core/Icon';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {actions} from '../redux/actions';
+import {actions} from '../../redux/actions';
 
 const style = () => ({
     root: {
         display: 'flex',
+        minHeight: 50,
     },
     colorContainer: {
         display: 'flex',
         padding: '0 25px',
         flexGrow: 1,
         justifyContent: 'space-evenly',
+        alignItems: 'center',
     },
 });
 
@@ -40,7 +42,7 @@ const ColorChooser = (props) => {
     const {colors, classes, actions, key, group, selectedColor} = props;
 
     const selectColor = (selectedColor) => {
-        actions.selectColor(_.indexOf(colors, selectedColor), group);
+        actions.selectColor(selectedColor, group);
     };
 
     return (

@@ -2,16 +2,33 @@ export const actions = {
     selectColor: (color, group) => {
         return {
             type: 'SELECT_COLOR',
-            color: color,
-            group: group,
+            color,
+            group,
         };
     },
+
+    selectShape: (shape, group) => {
+        return {
+            type: 'SELECT_SHAPE',
+            shape,
+            group,
+        };
+    },
+
     resetAvatar: () => {
         return {
             type: 'RESET_AVATAR',
             payload: 'NULL'
         };
     },
+
+    saveAvatar: () => {
+        return {
+            type: 'SAVE_AVATAR',
+            payload: 'NULL'
+        };
+    },
+
     randomAvatar: () => {
         return {
             type: 'RANDOM_AVATAR',

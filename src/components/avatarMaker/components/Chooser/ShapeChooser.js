@@ -4,17 +4,19 @@ import * as _ from 'lodash';
 import Icon from '@material-ui/core/Icon';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {actions} from '../redux/actions';
+import {actions} from '../../redux/actions';
 
 const style = () => ({
     root: {
         display: 'flex',
+        minHeight: 50,
     },
     shapeContainer: {
         display: 'flex',
         padding: '0 25px',
         flexGrow: 1,
         justifyContent: 'space-evenly',
+        alignItems: 'center',
     },
 });
 
@@ -37,12 +39,10 @@ const selectNextShape = (shapes, selectedShape) => {
 };
 
 const ShapeChooser = (props) => {
-    const {shapes, classes, actions, key, group, stockedShapeIndex} = props;
-    const selectedShape = shapes[stockedShapeIndex];
+    const {shapes, classes, actions, key, group, selectedShape} = props;
 
     const selectShape = (selectedShape) => {
-        // TODO change to select SHAPE
-        actions.selectColor(_.indexOf(shapes, selectedShape), group);
+        actions.selectShape(selectedShape, group);
     };
 
     return (
@@ -58,8 +58,9 @@ const ShapeChooser = (props) => {
                     _.map(shapes, (shape, index) => {
                         return (
                             <div key={'shape' + index} className={shape === selectedShape ? `shape-selected ` : `shape-not-selected`}>
-                                <div className={`shape-icon`} style={{backgroundShape: shape.shapeHex}}
-                                     onClick={() => selectShape(shapes[index])}></div>
+                                <div className={`shape-icon`} onClick={() => selectShape(shape)}>
+                                    {shape.index}
+                                </div>
                             </div>
                         );
                     })
@@ -75,8 +76,9 @@ const ShapeChooser = (props) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
+    // todo faut rendre paramétrable avec le ownProps.group
     return {
-        stockedShapeIndex: state.shape[ownProps.group],
+        selectedShape: state.shape[ownProps.group],
     };
 };
 
