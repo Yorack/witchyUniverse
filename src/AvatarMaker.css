@@ -1,5 +1,6 @@
 .avatar-maker-container {
     display: flex;
+    padding: 16px;
 }
 
 .avatar-maker-container > div{
@@ -35,12 +36,13 @@
 }
 
 
-.shape-icon {
+.shape-icon, .model-icon {
     font-size: 16px;
     font-weight: bold;
+    cursor: pointer;
 }
 
-.shape-selected .shape-icon{
+.shape-selected .shape-icon, .model-selected .model-icon{
     color: #9d131b;
     font-size: 18px;
 }

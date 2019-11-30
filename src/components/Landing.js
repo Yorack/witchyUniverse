@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Menu from "./menu/Menu";
+import Menu from './menu/Menu';
 
 export default class Landing extends Component {
     renderTitle = () => {

@@ -7,6 +7,14 @@ export const actions = {
         };
     },
 
+    selectModel: (model, group) => {
+        return {
+            type: 'SELECT_MODEL',
+            model,
+            group,
+        };
+    },
+
     selectShape: (shape, group) => {
         return {
             type: 'SELECT_SHAPE',

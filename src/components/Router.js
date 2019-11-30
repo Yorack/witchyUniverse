@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Switch} from 'react-router';
-import {Route, Router as ReactRouter} from "react-router-dom";
-import Landing from "./Landing";
-import createBrowserHistory from "history/createBrowserHistory";
-import AvatarMaker from "./avatarMaker/AvatarMaker";
+import {Route, Router as ReactRouter} from 'react-router-dom';
+import Landing from './Landing';
+import createBrowserHistory from 'history/createBrowserHistory';
+import AvatarMaker from './avatarMaker/AvatarMaker';
 
 const history = createBrowserHistory();
 

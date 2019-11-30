@@ -4,16 +4,16 @@ import MathUtils from '../../../../utils/MathUtils';
 import Constants from '../../../Common/Constants';
 
 const initialState = {
-    hair: Constants.DEFAULT_SHAPE[0],
-    eye: Constants.DEFAULT_SHAPE[0],
+    hat: Constants.DEFAULT_MODEL_HAT[0],
 };
 
-export const ShapeReducer = (state = initialState, action) => {
+export const ModelReducer = (state = initialState, action) => {
     let newState = Immutable.fromJS(state).toJS();
 
     switch (action.type) {
-        case 'SELECT_SHAPE':
-            newState[action.group] = action.shape;
+        case 'SELECT_MODEL':
+            console.log(`Select model from ${action.group}: ${action.model}`)
+            newState[action.group] = action.model;
             break;
         case 'RESET_AVATAR':
             newState = initialState;

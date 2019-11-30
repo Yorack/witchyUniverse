@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom';
 import image1 from 'assets/img/icon-workshop.PNG';
 import image2 from 'assets/img/icon-witch-maker.PNG';
 import image3 from 'assets/img/icon-pet.PNG';

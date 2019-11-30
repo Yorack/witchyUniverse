@@ -1,6 +1,7 @@
 import {combineReducers, createStore} from 'redux';
 import {ColorReducer} from './reducer/ColorReducer.js';
 import {ShapeReducer} from './reducer/ShapeReducer.js';
+import {ModelReducer} from './reducer/ModelReducer';
 
 export default class Store {
     static initialize = () => {
@@ -24,6 +25,7 @@ export default class Store {
         return combineReducers({
             color: ColorReducer,
             shape: ShapeReducer,
+            model: ModelReducer,
         });
     };
 }

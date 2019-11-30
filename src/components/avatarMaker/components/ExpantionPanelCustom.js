@@ -1,16 +1,12 @@
-import React, {Component} from "react";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import Typography from "@material-ui/core/Typography";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import PropTypes from 'prop-types';
-import {withStyles} from "@material-ui/core";
-import * as _ from "lodash";
+import React, {Component} from 'react';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import Typography from '@material-ui/core/Typography';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import {withStyles} from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Constants from "../../Common/Constants";
-import ColorChooser from "./Chooser/ColorChooser";
+import Constants from '../../Common/Constants';
 import Avatar from '@material-ui/core/Avatar';
-import ShapeChooser from './Chooser/ShapeChooser.js';
 
 const styles = theme => ({
     root: {

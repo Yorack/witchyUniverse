@@ -1,30 +1,32 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import mergeImages from 'merge-images';
-import axios from 'axios';
 
 const AvatarZone = (props) => {
     const [mergedImage, setMergedImage] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const test1 = `${process.env.PUBLIC_URL}/Hairs/hairs0${props.hairShapeIndex}_color0${props.hairColorIndex}.png`
-        const test2 = `${process.env.PUBLIC_URL}/Hairs/eye02_color0${props.eyeColor}.png`
-        setLoading(true);
-
-        mergeImages([
-            `${process.env.PUBLIC_URL}/Body/ears01_color01.png`,
-            `${process.env.PUBLIC_URL}/Body/head01_color01.png`,
-            `${process.env.PUBLIC_URL}/Body/tophead_color01.png`,
-            `${process.env.PUBLIC_URL}/Body/torse_skin01.PNG`,
+        const test1 = `${process.env.PUBLIC_URL}/Hairs/hairs0${props.hairShapeIndex}_color0${props.hairColorIndex}.png`;
+        const imageToMerge = [
+            `${process.env.PUBLIC_URL}/Body/Skin00.png`,
+            `${process.env.PUBLIC_URL}/EyeBrows/Eyebrows01_color01.png`,
+            `${process.env.PUBLIC_URL}/Eyes/Eyes01_color01.png`,
+            `${process.env.PUBLIC_URL}/Mouths/Mouth01.png`,
+            `${process.env.PUBLIC_URL}/Clothes/Necromancers/dress_Necromancer01.png`,
             test1,
-            // test2,
-            // `${process.env.PUBLIC_URL}/Hairs/eye02_color0${props.eyeColor}.png`,
-        ]).then(b64 => {
+        ];
+        const hat = props.hatModel.index > 0 ?
+            `${process.env.PUBLIC_URL}/Clothes/Necromancers/Hat0${props.hatModel.index}.png` : null;
+
+        if (hat) {
+            imageToMerge.push(hat);
+        }
+        setLoading(true);
+        mergeImages(imageToMerge).then(b64 => {
             setMergedImage(b64);
             setLoading(false);
         });
-
     }, [props]);
 
     return (
@@ -51,6 +53,7 @@ const AvatarZone = (props) => {
 const mapStateToProps = (state) => {
     return {
         hairShapeIndex: state.shape.hair.index,
+        hatModel: state.model.hat,
 
         hairColorIndex: state.color.hair.index + 1,
         eyeColor: state.color.eye.index + 1,
