@@ -42,7 +42,7 @@ const ColorChooser = (props) => {
     const {colors, classes, actions, key, group, selectedColor} = props;
 
     const selectColor = (selectedColor) => {
-        actions.selectColor(selectedColor, group);
+        actions.selectColor(selectedColor, group, colors);
     };
 
     return (

@@ -59,7 +59,7 @@ const ShapeChooser = (props) => {
                         return (
                             <div key={'shape' + index} className={shape === selectedShape ? `shape-selected ` : `shape-not-selected`}>
                                 <div className={`shape-icon`} onClick={() => selectShape(shape)}>
-                                    {shape.index}
+                                    {shape.label}
                                 </div>
                             </div>
                         );

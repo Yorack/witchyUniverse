@@ -15,6 +15,14 @@ export const actions = {
         };
     },
 
+    selectTool: (tool, group) => {
+        return {
+            type: 'SELECT_TOOL',
+            tool,
+            group,
+        };
+    },
+
     selectShape: (shape, group) => {
         return {
             type: 'SELECT_SHAPE',

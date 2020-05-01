@@ -10,15 +10,13 @@ export default class AvatarMaker extends Component {
     render() {
         const store = Store.initialize();
         return (
-            <div>
-                <Provider store={store}>
-                    <Menu menuClass='top-menu'/>
-                    <div className={'avatar-maker-container'}>
-                        <AvatarZone/>
-                        <RightMenu/>
-                    </div>
-                </Provider>
-            </div>
+            <Provider store={store}>
+                <Menu menuClass='top-menu'/>
+                <div className={'avatar-maker-container'}>
+                    <AvatarZone/>
+                    <RightMenu/>
+                </div>
+            </Provider>
         );
     }
 }

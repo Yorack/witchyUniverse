@@ -5,6 +5,6 @@ export default class Color {
     }
 
     equals(otherColor) {
-        return otherColor instanceof Color && otherColor.color === this.color;
+        return otherColor instanceof Color && otherColor.colorHex === this.colorHex;
     }
 }
